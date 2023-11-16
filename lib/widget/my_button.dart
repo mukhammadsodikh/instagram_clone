@@ -7,13 +7,17 @@ class MyButton extends StatelessWidget {
   final String text;
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onClick,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.blueAccent,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
+    return SizedBox(
+      height: 55,
+      width: MediaQuery.of(context).size.width,
+      child: ElevatedButton(
+        onPressed: onClick,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.blueAccent,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
+        ),
+        child: Text(text,style: TextStyle(color: Colors.white),),
       ),
-      child: Text(text),
     );
   }
 }

@@ -1,20 +1,24 @@
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:firebase_core/firebase_core.dart'; // Import the Firebase Core package
+import 'package:instagram_clone/manager/firebase_manager.dart';
 import 'package:instagram_clone/screen/login_screen.dart';
+import 'package:instagram_clone/splash_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  //await Firebase.initializeApp();
+  await Firebase.initializeApp();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown
+    DeviceOrientation.portraitDown,
   ]);
-  runApp(const MyApp());
+  runApp(MyApp());
 }
+
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({Key? key});
+
+  final _manager = FirebaseManage();
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +26,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF96234C))
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFFFFF)),
       ),
-      home: const LoginScreen(),
+      home: SplashScreen(),
     );
   }
 }

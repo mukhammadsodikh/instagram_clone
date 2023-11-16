@@ -1,37 +1,43 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-class MyPasswordField extends StatefulWidget {
-  const MyPasswordField({super.key, required this.controller, required this.hint});
 
+class PasswordField extends StatefulWidget {
+  const PasswordField({super.key, required this.controller, required this.hint});
   final TextEditingController controller;
   final String hint;
+
   @override
-  State<MyPasswordField> createState() => _MyPasswordFieldState();
+  State<PasswordField> createState() => _PasswordFieldState();
 }
 
-class _MyPasswordFieldState extends State<MyPasswordField> {
+class _PasswordFieldState extends State<PasswordField> {
+
   bool _isVisible = false;
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 60,
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12)
-      ),
-      child: TextField(
-        decoration: InputDecoration(
+    return TextField(
+      obscureText: _isVisible,
+      controller: widget.controller,
+      decoration: InputDecoration(
           border: InputBorder.none,
           filled: true,
           fillColor: Colors.white,
           hintText: widget.hint,
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
           suffixIcon: IconButton(
-            onPressed: (){
-              _isVisible =! _isVisible;
-            },
-            icon: Icon(_isVisible ? Icons.visibility : Icons.visibility_off))
-        ),
-        maxLines: 1,
+              onPressed: () {
+                setState(() {
+                  _isVisible = !_isVisible;
+                });
+              },
+              icon: Icon(_isVisible ? Icons.visibility : Icons.visibility_off)
+          )
       ),
     );
   }

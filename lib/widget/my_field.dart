@@ -6,23 +6,22 @@ class MyTextField extends StatelessWidget {
   final String hint;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 60,
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-        color: CupertinoColors.white,
-        borderRadius: BorderRadius.circular(12)
-      ),
-      child: TextField(
-        controller: controller,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          hintText: hint,
-          fillColor: CupertinoColors.white,
-          filled: true
+    return TextField(
+      controller: controller,
+      decoration: InputDecoration(
+        contentPadding: const EdgeInsets.symmetric(vertical: 20,horizontal: 10),
+        border: InputBorder.none,
+        hintText: hint,
+        fillColor: CupertinoColors.white,
+        filled: true,
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
         ),
-        maxLines: 1,
+          enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
       ),
+      ),
+      maxLines: 1,
     );
   }
 }

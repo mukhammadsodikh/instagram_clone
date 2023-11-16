@@ -37,14 +37,21 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_auth: ^4.12.1
   image_picker: ^1.0.4
-  firebase_core: ^2.21.0
+  firebase_core: ^2.22.0
   firebase_database: ^10.3.3
-  cloud_firestore: ^4.12.2
   google_fonts: ^6.1.0
+  auth_buttons: ^1.0.1+4
+  password_text_field: ^2.0.0
+  firebase_storage: ^11.5.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.13.1
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/logo.png"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -65,9 +72,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+     - assets/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
