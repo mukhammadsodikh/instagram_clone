@@ -7,7 +7,7 @@ import 'package:instagram_clone/screen/main_screen.dart';
 class SplashScreen extends StatelessWidget {
   SplashScreen({Key? key}) : super(key: key);
 
-  final _manager = FirebaseManage();
+  final _manager = FirebaseManager();
 
   @override
   Widget build(BuildContext context) {
@@ -23,25 +23,26 @@ class SplashScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: const Color(0xFFFFFF),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const SizedBox(height: 380,),
-          Image.asset('assets/logo.png'
-          ,
-          width: 80,
-          height: 80,),
-          const SizedBox(height: 180),
-          Text(
-            'from',
-            style: TextStyle(color: Colors.grey),
-          ),
-          const SizedBox(height: 5),
-          Image.asset('assets/meta.png'
-          ,width: 70,
-          height: 70,),
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(height: 350,),
+            Image.asset('assets/logo.png'
+            ,
+            width: 100,
+            height: 100,),
+            const SizedBox(height: 250),
+            Text(
+              'from',
+              style: TextStyle(color: Colors.grey),
+            ),
+            Image.asset('assets/meta.jpg'
+            ,width: 100,
+            height: 100,),
+          ],
+        ),
       ),
     );
   }

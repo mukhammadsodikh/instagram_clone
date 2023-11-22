@@ -18,7 +18,7 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   MyApp({Key? key});
 
-  final _manager = FirebaseManage();
+  final _manager = FirebaseManager();
 
   @override
   Widget build(BuildContext context) {

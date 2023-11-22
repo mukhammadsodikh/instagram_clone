@@ -15,21 +15,65 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text("Instagram",style: GoogleFonts.dancingScript(
-          fontSize: 25,
-          color: Colors.black
-        ),),
+        title: Text(
+          "Instagram",
+          style: GoogleFonts.dancingScript(fontSize: 34, color: Colors.black),
+        ),
+        bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(100),
+            child: SizedBox(
+                height: 100,
+                width: double.infinity,
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    itemCount: 10,
+                    itemBuilder: (context, index) {
+                      return _buildBox(
+                          'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg');
+                    },
+                  ),
+                ))),
         actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.favorite)),
           Badge.count(
             count: 2,
             child: IconButton(
-              onPressed: (){},
-              icon: const Icon(CupertinoIcons.chat_bubble_fill),
+              onPressed: () {},
+              icon: const Icon(CupertinoIcons.chat_bubble_text),
             ),
           ),
-          IconButton(onPressed: (){}, icon: Icon(Icons.favorite))
+          const SizedBox(width: 10),
         ],
       ),
+    );
+  }
+
+  Widget _buildBox(String imageUrl) {
+    return Stack(
+      children: [
+        Container(
+          width: 70,
+          height: 70,
+          decoration: const BoxDecoration(shape: BoxShape.circle),
+          child: CircleAvatar(
+            foregroundImage: NetworkImage(imageUrl),
+          ),
+        ),
+        Positioned(
+            right: 0,
+            bottom: 30,
+            child: Container(
+              height: 24,
+              width: 24,
+              decoration: const BoxDecoration(
+                  shape: BoxShape.circle, color: Colors.blue),
+              child:
+                  const Icon(CupertinoIcons.add_circled, color: Colors.white),
+            ))
+      ],
     );
   }
 }

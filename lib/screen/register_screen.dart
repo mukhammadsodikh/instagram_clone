@@ -27,10 +27,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final _usernameController = TextEditingController();
+  final _nicknameController = TextEditingController();
   bool _isloading = false;
   
   XFile? _xFile;
-  final _manager = FirebaseManage();
+  final _manager = FirebaseManager();
   void _register() {
     setState(() {
       _isloading = true;
@@ -38,13 +39,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
     _manager.register(
         _usernameController.text,
         _emailController.text,
-        _passwordController.text,
+        _nicknameController.text,
+        _passwordController.text ,
         File(_xFile?.path ?? "")
     ).then((value) {
       if(value == "Success") {
         showSuccessMessage(BuildContext,context, "Success");
         Navigator.of(context)
-            .push(CupertinoPageRoute(builder: (context) => const MainScreen()));
+            .pushAndRemoveUntil(CupertinoPageRoute(builder: (context) => const MainScreen()), (route) => false);
       } else {
         showErrorMessage(BuildContext,context, value);
         setState(() {
@@ -105,13 +107,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     foregroundImage: FileImage(File(_xFile?.path ??"")),
                   ),
                   const SizedBox(height: 30,),
-                  MyTextField(controller: _usernameController, hint: 'Username'),
+                  MyTextField(controller: _nicknameController, hint: 'Nickname'),
+                  const SizedBox(height: 15,),MyTextField(controller: _usernameController, hint: 'Username'),
                   const SizedBox(height: 15,),
                   MyTextField(controller: _emailController, hint: 'Email'),
                   const SizedBox(height: 15,),
                   PasswordField(controller: _passwordController, hint: 'Password'),
                   const SizedBox(height: 30,),
-                  _isloading ? const Loading() : MyButton(
+                  _isloading ?  Loading() : MyButton(
                     text: 'Register',
                     onClick: _register,
                   ),

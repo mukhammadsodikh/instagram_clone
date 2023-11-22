@@ -23,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  final _manager = FirebaseManage();
+  final _manager = FirebaseManager();
   bool _isLoading = false;
 
   void _login() {
@@ -78,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(height: 15),
                     PasswordField(controller: _passwordController, hint: 'Password'),
                     const SizedBox(height: 30),
-                    _isLoading ? const Loading() : MyButton(
+                    _isLoading ?  Loading() : MyButton(
                       text: 'Log in',
                       onClick: _login,
                     ),
