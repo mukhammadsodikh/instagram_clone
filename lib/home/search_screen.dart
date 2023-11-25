@@ -13,7 +13,7 @@ class _SearchScreenState extends State<SearchScreen> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text("Search Screen"),
+        title: const Text("Search Screen"),
       ),
     );
   }

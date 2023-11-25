@@ -1,4 +1,4 @@
-class FbUser{
+class FbUser {
   String? uid;
   String? image;
   String? username;
@@ -6,25 +6,25 @@ class FbUser{
   String? password;
   String? nickname;
 
-  FbUser.user(this.password,this.email,this.username,this.uid,this.image,this.nickname);
+  FbUser.user(this.uid, this.image, this.username, this.email, this.password, this.nickname);
   FbUser();
 
   FbUser.fromJson(Map<String, dynamic> json) :
-       uid = json['uid'],
-       image = json['image'],
-       username = json['username'],
-       email = json['email'],
-       password = json['password'],
-       nickname = json['nickname'];
+      uid = json['uid'],
+      image = json['image'],
+      email = json['email'],
+      username = json['username'],
+  nickname = json['nickname'],
+      password = json['password'];
 
-  Map<String, dynamic> toJson(){
-    return{
-      'uid':uid,
-      'image':image,
-      'email':email,
-      'username':username,
-        'password':password,
-
-      };
-    }
+  Map<String, dynamic> toJson() {
+    return {
+      'uid': uid,
+      'image': image,
+      'username': username,
+      'email': email,
+      'password': password,
+      'nickname': nickname
+    };
+  }
 }

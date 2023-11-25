@@ -20,22 +20,17 @@ class _HomeScreenState extends State<HomeScreen> {
           style: GoogleFonts.dancingScript(fontSize: 34, color: Colors.black),
         ),
         bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(100),
-            child: SizedBox(
-                height: 100,
-                width: double.infinity,
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    itemCount: 10,
-                    itemBuilder: (context, index) {
-                      return _buildBox(
-                          'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg');
-                    },
-                  ),
-                ))),
+          preferredSize: const Size.fromHeight(100),
+          child: SizedBox(height: 100,width: double.infinity,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            shrinkWrap: true,
+            itemCount: 10,
+            itemBuilder: (context, index) {
+              return _buildBox('https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg');
+            },
+          ))
+        ),
         actions: [
           IconButton(onPressed: () {}, icon: const Icon(Icons.favorite)),
           Badge.count(
@@ -57,7 +52,8 @@ class _HomeScreenState extends State<HomeScreen> {
         Container(
           width: 70,
           height: 70,
-          decoration: const BoxDecoration(shape: BoxShape.circle),
+          decoration:
+              const BoxDecoration(shape: BoxShape.circle),
           child: CircleAvatar(
             foregroundImage: NetworkImage(imageUrl),
           ),
@@ -69,9 +65,10 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 24,
               width: 24,
               decoration: const BoxDecoration(
-                  shape: BoxShape.circle, color: Colors.blue),
-              child:
-                  const Icon(CupertinoIcons.add_circled, color: Colors.white),
+                shape: BoxShape.circle,
+                color: Colors.blue
+              ),
+              child: const Icon(CupertinoIcons.add_circled,color: Colors.white),
             ))
       ],
     );

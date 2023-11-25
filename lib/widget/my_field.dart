@@ -17,9 +17,9 @@ class MyTextField extends StatelessWidget {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
         ),
-          enabledBorder: OutlineInputBorder(
+        enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-      ),
+        ),
       ),
       maxLines: 1,
     );

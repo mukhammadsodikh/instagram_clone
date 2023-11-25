@@ -4,12 +4,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Loading extends StatelessWidget {
-  Loading({super.key, this.color = Colors.white});
+  const Loading({super.key, this.color = Colors.white});
   final Color color;
+
   @override
   Widget build(BuildContext context) {
-    return Platform.isIOS ?
-        CupertinoActivityIndicator( color: color,) :
-        CircularProgressIndicator(color: color,);
+    return Platform.isIOS ?  /// dart:io dan bo'sin!
+    CupertinoActivityIndicator(color: color) :
+    CircularProgressIndicator(color: color);
   }
 }

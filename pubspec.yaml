@@ -43,6 +43,7 @@ dependencies:
   auth_buttons: ^1.0.1+4
   password_text_field: ^2.0.0
   firebase_storage: ^11.5.0
+  flutter_native_splash: ^2.3.6
 
 dev_dependencies:
   flutter_test:

@@ -1,13 +1,11 @@
 import 'dart:io';
 
 import 'package:auth_buttons/auth_buttons.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:instagram_clone/manager/firebase_manager.dart';
-import 'package:instagram_clone/screen/login_screen.dart';
 
+import '../manager/firebase_manager.dart';
 import '../util/message.dart';
 import '../widget/loading.dart';
 import '../widget/my_button.dart';
@@ -24,37 +22,40 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
 
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final _usernameController = TextEditingController();
-  final _nicknameController = TextEditingController();
-  bool _isloading = false;
-  
+  final _nameController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _nickNameController = TextEditingController(); /// mana
+
+  bool _isLoading = false;
+
   XFile? _xFile;
   final _manager = FirebaseManager();
+
   void _register() {
     setState(() {
-      _isloading = true;
+      _isLoading = true;
     });
     _manager.register(
-        _usernameController.text,
+        _nameController.text,
         _emailController.text,
-        _nicknameController.text,
-        _passwordController.text ,
+        _nickNameController.text, /// mana
+        _passwordController.text,
         File(_xFile?.path ?? "")
     ).then((value) {
       if(value == "Success") {
-        showSuccessMessage(BuildContext,context, "Success");
+        showSuccessMessage(context, "Success");
         Navigator.of(context)
-            .pushAndRemoveUntil(CupertinoPageRoute(builder: (context) => const MainScreen()), (route) => false);
+            .pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const MainScreen()), (route) => false);
       } else {
-        showErrorMessage(BuildContext,context, value);
+        showErrorMessage(context, "Error");
         setState(() {
-          _isloading = false;
+          _isLoading = false;
         });
       }
-    });
+    }); // then tugashi
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,16 +63,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
         decoration: const BoxDecoration(
             gradient: LinearGradient(
                 colors: [
-                  Color(0xff11347a),
-                  Color(0xffd52a92),
-                  Color(0xffe5571e),
+                  Color(0xffd91377),
+                  Color(0xff157496),
+                  Color(0xff1a2a94),
                 ],
                 begin: Alignment(0,0),
                 end: Alignment(1,1)
             )
         ),
         child: Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Center(
             child: SingleChildScrollView(
               child: Column(
@@ -86,54 +87,51 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         fontWeight: FontWeight.bold
                     ),
                   ),
-                  const SizedBox(height: 10,),
-                  
-                  _xFile == null? Container(
-                    width: 80,
-                    height: 80,
+                  const SizedBox(height: 10),
+
+                  _xFile == null ? Container( /// mana 1
+                    width: 70,
+                    height: 70,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
                       border: Border.all(color: Colors.white,width: 2)
                     ),
-                    child: IconButton(onPressed: () async{
+                    child: IconButton(onPressed: () async {
                       final picker = ImagePicker();
                       _xFile = await picker.pickImage(source: ImageSource.gallery);
-                      setState(() {
-
-                      });
-                    }, icon: const Icon(CupertinoIcons.person,size: 60, color: Colors.white,)),
+                      setState(() {});
+                    }, icon: const Icon(Icons.person,color: Colors.white)), /// mana 2
                   ) : CircleAvatar(
-                    radius: 70,
-                    foregroundImage: FileImage(File(_xFile?.path ??"")),
+                    radius: 90, /// mana 3
+                    foregroundImage: FileImage(File(_xFile?.path ?? "")),
                   ),
                   const SizedBox(height: 30,),
-                  MyTextField(controller: _nicknameController, hint: 'Nickname'),
-                  const SizedBox(height: 15,),MyTextField(controller: _usernameController, hint: 'Username'),
+                  MyTextField(controller: _nameController, hint: 'Username'),
+                  const SizedBox(height: 15,),
+                  MyTextField(controller: _nickNameController, hint: 'Nickname'),
                   const SizedBox(height: 15,),
                   MyTextField(controller: _emailController, hint: 'Email'),
-                  const SizedBox(height: 15,),
-                  PasswordField(controller: _passwordController, hint: 'Password'),
-                  const SizedBox(height: 30,),
-                  _isloading ?  Loading() : MyButton(
+                  const SizedBox(height: 15),
+                  MyPasswordField(controller: _passwordController, hint: 'Password'),
+                  const SizedBox(height: 30),
+                  _isLoading ? const Loading() : MyButton(
                     text: 'Register',
                     onClick: _register,
                   ),
                   const SizedBox(height: 30,),
                   GoogleAuthButton(
-                      onPressed: (){
+                    onPressed: () {
 
-                      }
+                    },
                   ),
-                  const SizedBox(height: 30,),
+                  const SizedBox(height: 30),
                   Positioned(
                       bottom: 0,
                       left: 0,
                       right: 0,
                       child: TextButton(onPressed: (){
-                        Navigator.of(context).pop(CupertinoPageRoute(builder: (context)=> LoginScreen()),);
-                      },
-                        child: Text("Arleady have an account? Sign In",
-                          style: TextStyle(color: Colors.white,fontSize: 15),),))
+                        Navigator.of(context).pop();
+                      },child: const Text("Already have an account? Sign In",style: TextStyle(color: Colors.white))))
                 ],
               ),
             ),
