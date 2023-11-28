@@ -5,8 +5,21 @@ class FbUser {
   String? email;
   String? password;
   String? nickname;
+  int? postCount;
+  int? followerCount;
+  int? followingCount;
 
-  FbUser.user(this.uid, this.image, this.username, this.email, this.password, this.nickname);
+  FbUser.user(
+      this.uid,
+      this.image,
+      this.username,
+      this.email,
+      this.password,
+      this.nickname,
+      this.postCount,
+      this.followerCount,
+      this.followingCount
+      );
   FbUser();
 
   FbUser.fromJson(Map<String, dynamic> json) :
@@ -14,8 +27,11 @@ class FbUser {
       image = json['image'],
       email = json['email'],
       username = json['username'],
-  nickname = json['nickname'],
-      password = json['password'];
+      nickname = json['nickname'],
+      password = json['password'],
+      postCount = json['post_count'],
+      followingCount = json['following_count'],
+      followerCount = json['follower_count'];
 
   Map<String, dynamic> toJson() {
     return {
@@ -24,7 +40,10 @@ class FbUser {
       'username': username,
       'email': email,
       'password': password,
-      'nickname': nickname
+      'nickname': nickname,
+      'post_count': postCount,
+      'following_count': followingCount,
+      'follower_count': followerCount
     };
   }
 }

@@ -89,7 +89,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   const SizedBox(height: 10),
 
-                  _xFile == null ? Container( /// mana 1
+                  _xFile == null ? Container(
                     width: 70,
                     height: 70,
                     decoration: BoxDecoration(
@@ -100,9 +100,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       final picker = ImagePicker();
                       _xFile = await picker.pickImage(source: ImageSource.gallery);
                       setState(() {});
-                    }, icon: const Icon(Icons.person,color: Colors.white)), /// mana 2
+                    }, icon: const Icon(Icons.person,color: Colors.white)),
                   ) : CircleAvatar(
-                    radius: 90, /// mana 3
+                    radius: 90,
                     foregroundImage: FileImage(File(_xFile?.path ?? "")),
                   ),
                   const SizedBox(height: 30,),

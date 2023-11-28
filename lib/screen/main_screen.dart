@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import '../home/add_screen.dart';
 import '../home/home_screen.dart';
 import '../home/profile_screen.dart';
@@ -16,6 +17,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   final _manager = FirebaseManager();
+  int _selectedIndex = 0;
 
   final List<Widget> _screens = const [
     HomeScreen(),
@@ -24,8 +26,6 @@ class _MainScreenState extends State<MainScreen> {
     ReelsScreen(),
     ProfileScreen(),
   ];
-
-  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {

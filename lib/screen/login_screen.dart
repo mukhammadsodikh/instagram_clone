@@ -2,6 +2,7 @@ import 'package:auth_buttons/auth_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:instagram_clone/screen/register_screen.dart';
+
 import '../manager/firebase_manager.dart';
 import '../util/message.dart';
 import '../widget/loading.dart';

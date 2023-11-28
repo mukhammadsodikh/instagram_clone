@@ -1,10 +1,8 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../manager/firebase_manager.dart';
 import '../model/post.dart';
 import '../screen/main_screen.dart';
@@ -34,7 +32,7 @@ class _AddScreenState extends State<AddScreen> {
       Post.post(null,
           _textController.text,
           _image?.path ?? "",
-          null, 0, null
+          null, 0, null, null
       )
     ).then((value) {
       setState(() {
@@ -53,8 +51,11 @@ class _AddScreenState extends State<AddScreen> {
         elevation: 0,
         title: const Text("Add Screen"),
         actions: [
-          _isLoading ? const Loading(
-            color: Colors.red,
+          _isLoading ? Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: const Loading(
+              color: Colors.red,
+            ),
           ) : CupertinoButton(
               child: const Icon(CupertinoIcons.add), onPressed: () {
                 if(_image != null && _textController.text.isNotEmpty) {
